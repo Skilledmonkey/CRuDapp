@@ -7,17 +7,19 @@
       src="https://code.jquery.com/jquery-3.3.1.js"
       integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
       crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="main.css">
     <script src='app.js'></script>
-
-     <!-- TODO add link to css -->
   </head>
   <body>
-    <!-- <form name="my-crud-form"> -->
-      <input class= 'input-field-title' type="text" >
-      <input class= 'input-field-body' type="text" >
+    <div class="container">
+      <input class= 'input-field-title' type="text" placeholder="enter the title of whats being done" >
+      <textarea class= 'input-field-body' type="text" placeholder="enter content" ></textarea>
       <button class="store-btn" name="button">store data</button>
       <button class="get-btn" name="button">get data</button>
       <button class="delete-btn" name="button">delete data</button>
-    <!-- </form> -->
+    </div>
+    <div class="item display">
+
+    </div>
   </body>
 </html>

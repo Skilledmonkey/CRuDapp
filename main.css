@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+/* TODO: change to what you are changing ie data */
+.item-display {
+  flex-grow: 1;
+}
+
+button {
+  border-radius: 4px;
+  width: 150px;
+  height: 25px;
+}
+
+button:hover {
+  background-color: dodgerblue;
+}
+
+button:after {
+  background-color: red;
+}
+
+.input-field-title {
+text
+  height: 50px;
+}
+
+.input-field-body {
+  font-size: 25px;
+}
