@@ -12,10 +12,10 @@ $(document).ready(function() {
    localStorage.removeItem('hrext');
   });
 
-//CLEAR ALL BUTTON
-  $('.').click(function() {
-   localStorage.clear();
-  });
+//CLEAR ALL local storage BUTTON
+  // $('.').click(function() {
+  //  localStorage.clear();
+  // });
 
 
   //create function skelton stub for read/write/delete
