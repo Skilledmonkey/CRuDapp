@@ -1,38 +1,117 @@
-$(document).ready(function() {
-  //attach event listner to button click(input)
-//localStorage.length as your array length
-// localStorage.key(index) to access by number
-// that returns a list of the keys
+$(document).ready(function(){
 
-  $('.store-btn').click(function(event) {
-    let titleValue = $('.input-field-title').val();
-    let contentValue = $('.input-field-body').val();
-    localStorage.setItem('titleValue', titleValue);
-    localStorage.setItem('contentValue', contentValue);
 
-  });
+  let JobHoursObject = function(ticket, jcode, pays){
+      this.ticket = ticket;
+      this.jobCode = jcode;
+      this.pays = pays;
+  }
 
-  $('.get-btn').click(function(event) {
-  let titleValue = localStorage.getItem('titleValue')
-  let contentValue = localStorage.getItem('contentValue')
-   $('.debug').html(`<p>${titleValue} ${contentValue}</p>`)
-  });
+  //GETS A SINGLE VALUE FROM EVERY TICKET AND EACH JOB IN THE TICKET
+  let getAllTicketValues = function(whatValue) { // whatValue needs to be a string from each object
+    let valuesArr = [];
+    //JUST ONE TICKET
+// console.log(ticket)
+//     if(ticket){
+//         let jobObjs = JSON.parse(localStorage.getItem(localStorage.key(ticket)))
+//         jobObjs.forEach(function(element) {
+//           return valuesArr.push(element[whatValue]);
+//         })
+//       } else {
+        //FOR ALL TICKETS
+        if(whatValue === 'pays'){
+          for(let i = 0; i < localStorage.length; i++){
+            let jobObjs = JSON.parse(localStorage.getItem(localStorage.key(i)))// gives the array of objects
+            jobObjs.forEach(function(element) {
+              return valuesArr.push(Number(element[whatValue]));
+            })
+          }
+        } else {
+          for(let i = 0; i < localStorage.length; i++){
+            let jobObjs = JSON.parse(localStorage.getItem(localStorage.key(i)))// gives the array of objects
+            jobObjs.forEach(function(element) {
+              return valuesArr.push(element[whatValue]);
+            })
+          }
+        }
+      //}
+    return valuesArr;
+  }
 
-  $('.delete-btn').click(function() {
-    localStorage.removeItem('titleValue')
-    localStorage.removeItem('contentValue')
-    $('.debug').html(`<p>have been deleted</p>`)
-    // TODO: confirm wanting to delete (window confirm method??)
-    //throw up .confirm window
-    //
-  });
+  // let findIndex = function(ticketNum) {
+  //
+  // }
 
-//CLEAR ALL local storage BUTTON
-  // $('.').click(function() {
-  //  localStorage.clear();
+// TODO REFACTOR USING REDUCE
+  let totaler = function(array) {
+    let total;
+    console.log(typeof(array[0]))
+    if(typeof(array[0]) === 'number'){
+      total = 0;
+      for(let i = 0; i < array.length; i++){
+        total += array[i];
+      }
+    } else {
+      total = {};
+      for(let i = 0; i < array.length; i++){
+        if(total.hasOwnProperty(array[i])){
+          total[array[i]]++
+        } else {
+          total[array[i]] = 1;
+        }
+      }
+    }
+    return total;
+  }
+
+
+  // attach event listener to buttons(input?)
+  // create function stub for read/write/delete
+    // research local storage
+
+  // $().on('click', function(){
+  //
   // });
 
+  $('.store-btn').on('click', function(event){
+    let carTicket = $('.input-ticket-car').val();
+    let jobCode = $('.input-job-code').val().toUpperCase();
+    let time = $('.input-hours').val()
 
-  //create function skelton stub for read/write/delete
-  //research local storage
+    if(localStorage.hasOwnProperty(carTicket)){
+      let updateJobsObj = JSON.parse(localStorage.getItem(carTicket));
+
+      updateJobsObj.push(new JobHoursObject(carTicket, jobCode, time));
+      localStorage.setItem(carTicket, JSON.stringify(updateJobsObj))
+      } else {
+        localStorage.setItem(String(carTicket), JSON.stringify([new JobHoursObject(carTicket, jobCode, time)]));
+        //localStorage.setItem('contentValue', jobCode);
+        $('.debug').html(`<p>Item Added</p>`)
+      }
+  });
+
+  $('.get-btn').on('click', function(event){
+    //console.log(localStorage.getItem('hrext'));
+    let titleValue = localStorage.getItem('titleValue');
+    let contentValue = localStorage.getItem('contentValue');
+
+    $('.debug').html(`<p>${titleValue} ${contentValue}</p>`);
+
+  });
+
+  $('.delete-btn').on('click', function(event){
+    // TODO add in a confirm
+    // throw up .confirm window
+    // capture result
+    // test boolean to delete or not
+    localStorage.removeItem('titleValue'); // needs to be an input value
+    localStorage.removeItem('contentValue');
+    $('.debug').html(`<p>Items deleted</p>`);
+
+
+  });
+
+
+
+
 });

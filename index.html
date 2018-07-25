@@ -1,25 +1,46 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html>
   <head>
-    <meta charset="utf-8">
-    <title>My CruDDy App</title>
+    <title>My CrUDdy App</title>
+    <!--
+    TODO
+    add link to css
+    add link to our app
+    -->
     <script
-      src="https://code.jquery.com/jquery-3.3.1.js"
-      integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-      crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="main.css">
-    <script src='app.js'></script>
+            src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js"></script>
+
   </head>
+  <h1>Jobs Flagged Today</h1>
   <body>
     <div class="container">
-      <input class= 'input-field-title' type="text" placeholder="enter the title of whats being done" >
-      <textarea class= 'input-field-body' type="text" placeholder="enter content" ></textarea>
-      <button class="store-btn" name="button">store data</button>
-      <button class="get-btn" name="button">get data</button>
-      <button class="delete-btn" name="button">delete data</button>
-    </div>
-    <div class="item display">
+      <div id="titleInput">
+        <h4>Ticket</h4>  <input class="input-ticket-car" type="text" placeholder="Ticket Number">
+      </div>
+      <div id="jobCode">
+        <h4>Job Code</h4> <input class="input-job-code" placeholder="Operation Code"> <!-- maybe switch to <div id='fake_textarea' contenteditable></div>-->
+      </div>
+      <div id="time">
+        <h4>Hours</h4> <input class="input-hours" type="number" placeholder="1.2">
+      </div>
+      <div id="buttonContainer">
+        <button class="store-btn">store data</button>
+        <button class="get-btn">get data</button>
+        <button class="delete-btn">delete data</button>
+      </div>
 
+
+      <div class="item-display">
+
+      </div>
+      <div class="totals">
+
+      </div>
     </div>
+
   </body>
 </html>
